@@ -1,16 +1,19 @@
 {
   "name": "react-markdown-editor",
   "version": "0.0.1",
-  "description": "基于react开发的markdown编辑器",
-  "main": "index.js",
+  "description": "基于react的markdown编辑器",
+  "main": "src/index.js",
+  "repository": "https://github.com/LinWeb/react-markdown-editor.git",
+  "author": "lxs <798738148@qq.com>",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --hot",
+    "build": "webpack"
   },
-  "keywords": [
-    "markdown",
-    "react",
-    "editor"
-  ],
-  "author": "linxiaosheng",
-  "license": "ISC"
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  }
 }
