@@ -1,11 +1,23 @@
 import React from "react";
 import "./index.scss";
 
-export default class Toolbar extends React.Component {
+interface Props {
+  changeValue: (value: string) => void;
+}
+export default class Toolbar extends React.Component<Props> {
+  public constructor(props: Readonly<Props>) {
+    super(props);
+  }
+  public selectTitle = () => {
+    this.props.changeValue("11111111"); // 如何返回新的内容
+  };
   render() {
     return (
       <div className="toolbar">
-        <span className="iconfont iconbiaotizhengwenqiehuan" />
+        <span
+          className="iconfont iconbiaotizhengwenqiehuan"
+          onClick={this.selectTitle}
+        />
         <span className="iconfont iconcuti" />
         <span className="iconfont iconxieti" />
         <span className="iconfont iconxiahuaxian" />

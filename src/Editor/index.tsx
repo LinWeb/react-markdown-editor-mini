@@ -11,11 +11,19 @@ interface Props {
 }
 interface State {
   value: string;
+  selectContent: string;
+  selectStartIndex: number;
+  selectEndIndex: number;
 }
 export default class Editor extends React.Component<Props, State> {
   public constructor(props: Props) {
     super(props);
-    this.state = { value: props.defaultValue || "" };
+    this.state = {
+      value: props.defaultValue || "",
+      selectContent: "",
+      selectStartIndex: 0,
+      selectEndIndex: 0
+    };
   }
   public changeValue = (value: string) => {
     this.setState(() => {
@@ -24,21 +32,41 @@ export default class Editor extends React.Component<Props, State> {
       };
     });
   };
-
+  public getSelectContent = (selectContent: string) => {
+    const selectStartIndex = this.state.value.indexOf(selectContent);
+    const selectEndIndex = selectStartIndex + selectContent.length;
+    this.setState(() => {
+      return {
+        selectStartIndex,
+        selectEndIndex,
+        selectContent
+      };
+    });
+  };
   public render() {
     const { width, height } = this.props;
-    const { value } = this.state;
+    const {
+      value,
+      selectStartIndex,
+      selectEndIndex,
+      selectContent
+    } = this.state;
+    console.log(selectStartIndex, selectEndIndex, selectContent);
     return (
       <div
         className="react-markdown-editor-container"
         style={{ width: width + "px" }}
       >
         <div className="toolbar-container">
-          <Toolbar />
+          <Toolbar changeValue={this.changeValue} />
         </div>
         <div className="main-container" style={{ height: height - 32 + "px" }}>
           <div className="edit-container">
-            <EditTextarea value={value} changeValue={this.changeValue} />
+            <EditTextarea
+              value={value}
+              changeValue={this.changeValue}
+              getSelectContent={this.getSelectContent}
+            />
           </div>
           <div className="view-container">
             <Preview />

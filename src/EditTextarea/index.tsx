@@ -4,6 +4,7 @@ import "./index.scss";
 interface Props {
   value: string;
   changeValue: (value: string) => void;
+  getSelectContent: (value: string) => void;
 }
 export default class EditTextarea extends React.Component<Props, {}> {
   public constructor(props: Readonly<Props>) {
@@ -13,6 +14,11 @@ export default class EditTextarea extends React.Component<Props, {}> {
     const value = e.target.value;
     this.props.changeValue(value);
   };
+  public onMouseUp = () => {
+    let str = window.getSelection().toString();
+    console.log(str, this.props.value.indexOf(str));
+    this.props.getSelectContent(str);
+  };
   public render() {
     const { value } = this.props;
     return (
@@ -20,6 +26,7 @@ export default class EditTextarea extends React.Component<Props, {}> {
         className="edit-textarea"
         value={value}
         onChange={this.onChange}
+        onMouseUp={this.onMouseUp}
       />
     );
   }
