@@ -3,21 +3,16 @@
   margin: 0;
 }
 .react-markdown-editor-container {
-  width: 400px;
+  width: 100%;
   border: 1px solid #ddd;
-  .toolbar-container {
-    height: 45px;
-  }
+  overflow: hidden;
+  min-width: 468px;
   .main-container {
     .edit-container,
     .view-container {
+      height: 100%;
       float: left;
       width: 50%;
-    }
-    .edit-container {
-      .edit-textarea {
-        width: 100%;
-      }
     }
   }
 }

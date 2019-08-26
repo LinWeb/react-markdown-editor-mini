@@ -1,0 +1,17 @@
+.react-markdown-editor-container {
+  .toolbar-container {
+    background-color: #f1f1f1;
+    .toolbar {
+      padding: 5px;
+      .iconfont {
+        color: #999999;
+        font-size: 18px;
+        padding: 0px 5px;
+        cursor: pointer;
+        &:hover {
+          color: #666;
+        }
+      }
+    }
+  }
+}

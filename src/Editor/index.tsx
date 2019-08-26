@@ -5,34 +5,40 @@ import Preview from "../Preview/index";
 import "./index.scss";
 
 interface Props {
-  config: {
-    row: number;
-  };
+  width: number;
+  height: number;
+  defaultValue: string;
 }
 interface State {
-  config: {
-    row: number;
-  };
+  value: string;
 }
 export default class Editor extends React.Component<Props, State> {
-  constructor(props: Props) {
+  public constructor(props: Props) {
     super(props);
-    this.state = {
-      config: {
-        row: 11
-      }
-    };
+    this.state = { value: props.defaultValue || "" };
   }
+  public changeValue = (value: string) => {
+    this.setState(() => {
+      return {
+        value
+      };
+    });
+  };
 
-  render() {
+  public render() {
+    const { width, height } = this.props;
+    const { value } = this.state;
     return (
-      <div className="react-markdown-editor-container">
+      <div
+        className="react-markdown-editor-container"
+        style={{ width: width + "px" }}
+      >
         <div className="toolbar-container">
           <Toolbar />
         </div>
-        <div className="main-container">
+        <div className="main-container" style={{ height: height - 32 + "px" }}>
           <div className="edit-container">
-            <EditTextarea />
+            <EditTextarea value={value} changeValue={this.changeValue} />
           </div>
           <div className="view-container">
             <Preview />
