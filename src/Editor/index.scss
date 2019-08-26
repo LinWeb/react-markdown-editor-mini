@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.react-markdown-editor-container {
+  width: 400px;
+  border: 1px solid #ddd;
+  .toolbar-container {
+    height: 45px;
+  }
+  .main-container {
+    .edit-container,
+    .view-container {
+      float: left;
+      width: 50%;
+    }
+    .edit-container {
+      .edit-textarea {
+        width: 100%;
+      }
+    }
+  }
+}
