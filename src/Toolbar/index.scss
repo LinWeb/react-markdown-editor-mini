@@ -6,10 +6,54 @@
       .iconfont {
         color: #999999;
         font-size: 18px;
-        padding: 0px 5px;
+        padding: 6px 10px;
         cursor: pointer;
         &:hover {
           color: #666;
+        }
+        &.title-operate{
+          position: relative;
+          &:hover{
+            .title-types{
+              display:block;
+            }
+          }
+          .title-types{
+            display:none;
+            position:absolute;
+            top: 27px;
+            overflow: hidden;
+            background-color: #fff;
+            padding:4px 0;
+            li{
+              cursor: pointer;
+              width: 110px;
+              text-align:center;
+              color: #111111;
+              padding:6px 0;
+              &:hover{
+                background-color:#f1f1f1;
+              }
+              &.h1{
+                font-size: 32px;
+              }
+              &.h2{
+                font-size: 28px;
+              }
+              &.h3{
+                font-size: 24px;
+              }
+              &.h4{
+                font-size: 20px;
+              }
+              &.h5{
+                font-size: 16px;
+              }
+              &.h6{
+                font-size: 12px;
+              }
+            }
+          }
         }
       }
     }

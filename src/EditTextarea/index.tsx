@@ -16,7 +16,6 @@ export default class EditTextarea extends React.Component<Props, {}> {
   };
   public onMouseUp = () => {
     let str = window.getSelection().toString();
-    console.log(str, this.props.value.indexOf(str));
     this.props.getSelectContent(str);
   };
   public render() {

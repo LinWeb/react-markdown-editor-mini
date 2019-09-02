@@ -25,10 +25,22 @@ export default class Editor extends React.Component<Props, State> {
       selectEndIndex: 0
     };
   }
-  public changeValue = (value: string) => {
+
+  public change = (newSelectContent: string) => {
+    const {
+      value,
+      selectStartIndex,
+      selectEndIndex,
+    } = this.state;
+    let start = value.substring(0, selectStartIndex);
+    let end = value.substring(selectEndIndex);
+    let newValue = start + newSelectContent + end
+    this.changeValue(newValue)
+  }
+  public changeValue = (newValue: string) => {
     this.setState(() => {
       return {
-        value
+        value: newValue
       };
     });
   };
@@ -58,7 +70,7 @@ export default class Editor extends React.Component<Props, State> {
         style={{ width: width + "px" }}
       >
         <div className="toolbar-container">
-          <Toolbar changeValue={this.changeValue} />
+          <Toolbar change={this.change} selectContent={selectContent} />
         </div>
         <div className="main-container" style={{ height: height - 32 + "px" }}>
           <div className="edit-container">
