@@ -6,8 +6,9 @@
         height: 100%;
         border: none;
         overflow-x: hidden;
-        overflow-y: visible;
+        overflow-y: scroll;
         resize: none;
+        outline: none;
       }
     }
   }

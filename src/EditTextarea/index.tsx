@@ -26,7 +26,7 @@ export default class EditTextarea extends React.Component<Props, {}> {
         value={value}
         onChange={this.onChange}
         onMouseUp={this.onMouseUp}
-      />
+      ></textarea>
     );
   }
 }
