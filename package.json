@@ -36,6 +36,8 @@
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
+    "highlight.js": "^9.15.10",
+    "marked": "^0.7.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   }

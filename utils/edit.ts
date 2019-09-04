@@ -1,4 +1,4 @@
-export const edit = function(type, value) {
+export const edit = function (type: string, value: string) {
   let newValue = "";
   switch (type) {
     case "H1":

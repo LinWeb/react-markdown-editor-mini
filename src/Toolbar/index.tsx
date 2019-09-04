@@ -3,7 +3,7 @@ import "./index.scss";
 import { edit } from "../../utils/edit";
 
 interface Props {
-  change: (value: string) => void;
+  changeSelectContent: (value: string) => void;
   changeValue: (value: string) => void;
   selectContent: string;
 }
@@ -12,9 +12,9 @@ export default class Toolbar extends React.Component<Props> {
     super(props);
   }
   public click = (type: string) => {
-    let { change, selectContent } = this.props;
+    let { changeSelectContent, selectContent } = this.props;
     const value = edit(type, selectContent);
-    change(value); // 如何返回新的内容
+    changeSelectContent(value); // 如何返回新的内容
   };
   render() {
     const { changeValue } = this.props

@@ -1,6 +1,6 @@
 import React from "react";
 import Toolbar from "../Toolbar/index";
-import EditTextarea from "../EditTextarea/index";
+import Textarea from "../Textarea/index";
 import Preview from "../Preview/index";
 import "./index.scss";
 
@@ -26,7 +26,7 @@ export default class Editor extends React.Component<Props, State> {
     };
   }
 
-  public change = (newSelectContent: string) => {
+  public changeSelectContent = (newSelectContent: string) => {
     const {
       value,
       selectStartIndex,
@@ -37,13 +37,15 @@ export default class Editor extends React.Component<Props, State> {
     let newValue = start + newSelectContent + end
     this.changeValue(newValue)
   }
+
   public changeValue = (newValue: string) => {
     this.setState(() => {
       return {
         value: newValue
       };
     });
-  };
+  }
+
   public getSelectContent = (selectStartIndex: number, selectEndIndex: number, selectContent: string) => {
     this.setState(() => {
       return {
@@ -52,7 +54,8 @@ export default class Editor extends React.Component<Props, State> {
         selectContent
       };
     });
-  };
+  }
+
   public render() {
     const { width, height } = this.props;
     const {
@@ -65,18 +68,18 @@ export default class Editor extends React.Component<Props, State> {
         style={{ width: width + "px" }}
       >
         <div className="toolbar-container">
-          <Toolbar change={this.change} changeValue={this.changeValue} selectContent={selectContent} />
+          <Toolbar changeSelectContent={this.changeSelectContent} changeValue={this.changeValue} selectContent={selectContent} />
         </div>
         <div className="main-container" style={{ height: height - 32 + "px" }}>
           <div className="edit-container">
-            <EditTextarea
+            <Textarea
               value={value}
               changeValue={this.changeValue}
               getSelectContent={this.getSelectContent}
             />
           </div>
           <div className="view-container">
-            <Preview />
+            <Preview content={value} />
           </div>
         </div>
       </div>

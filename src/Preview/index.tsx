@@ -1,7 +1,13 @@
 import React from "react";
+import marked from '../../utils/marked'
 
-export default class Preview extends React.Component {
+interface IProps {
+  content: string;
+}
+
+export default class Preview extends React.Component<IProps, {}> {
   render() {
-    return <div className="preview">预览</div>;
+    const { content } = this.props
+    return <div className="preview" dangerouslySetInnerHTML={{ __html: marked(content || '') }}></div>;
   }
 }

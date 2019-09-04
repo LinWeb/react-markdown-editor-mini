@@ -6,7 +6,7 @@ interface Props {
   changeValue: (value: string) => void;
   getSelectContent: (selectStartIndex: number, selectEndIndex: number, selectContent: string) => void;
 }
-export default class EditTextarea extends React.Component<Props, {}> {
+export default class Textarea extends React.Component<Props, {}> {
   public constructor(props: Readonly<Props>) {
     super(props);
   }
