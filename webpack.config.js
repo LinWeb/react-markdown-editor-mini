@@ -19,6 +19,11 @@ module.exports = {
         use: "babel-loader",
         exclude: /node_modules/
       },
+      // {
+      //   test: /\.js|jsx|ts|tsx?$/,
+      //   use: "eslint-loader",
+      //   exclude: /node_modules/
+      // },
       {
         test: /\.tsx?$/,
         use: "ts-loader",

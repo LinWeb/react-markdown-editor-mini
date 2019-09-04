@@ -1,4 +1,9 @@
 module.exports = {
+  parserOptions: {
+    ecmaVersion: 2015,
+    sourceType: "module"
+  },
+  plugins: ["html"],
   settings: {
     "import/resolver": {
       webpack: {
@@ -12,5 +17,11 @@ module.exports = {
         }
       }
     }
-  }
+  },
+  extends: [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:react/recommended"
+  ]
 };
