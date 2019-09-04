@@ -4,6 +4,7 @@ import { edit } from "../../utils/edit";
 
 interface Props {
   change: (value: string) => void;
+  changeValue: (value: string) => void;
   selectContent: string;
 }
 export default class Toolbar extends React.Component<Props> {
@@ -16,6 +17,7 @@ export default class Toolbar extends React.Component<Props> {
     change(value); // 如何返回新的内容
   };
   render() {
+    const { changeValue } = this.props
     return (
       <div className="toolbar">
         <span className="iconfont iconbiaotizhengwenqiehuan title-operate">
@@ -127,7 +129,9 @@ export default class Toolbar extends React.Component<Props> {
         <span className="iconfont iconshangchuantupian" />
         <span className="iconfont iconchexiao" />
         <span className="iconfont iconzhongzuo" />
-        <span className="iconfont iconshanchu" />
+        <span className="iconfont iconshanchu" onClick={() => {
+          changeValue('');
+        }} />
       </div>
     );
   }

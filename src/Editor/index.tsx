@@ -44,9 +44,7 @@ export default class Editor extends React.Component<Props, State> {
       };
     });
   };
-  public getSelectContent = (selectContent: string) => {
-    const selectStartIndex = this.state.value.indexOf(selectContent);
-    const selectEndIndex = selectStartIndex + selectContent.length;
+  public getSelectContent = (selectStartIndex: number, selectEndIndex: number, selectContent: string) => {
     this.setState(() => {
       return {
         selectStartIndex,
@@ -59,18 +57,15 @@ export default class Editor extends React.Component<Props, State> {
     const { width, height } = this.props;
     const {
       value,
-      selectStartIndex,
-      selectEndIndex,
       selectContent
     } = this.state;
-    console.log(selectStartIndex, selectEndIndex, selectContent);
     return (
       <div
         className="react-markdown-editor-container"
         style={{ width: width + "px" }}
       >
         <div className="toolbar-container">
-          <Toolbar change={this.change} selectContent={selectContent} />
+          <Toolbar change={this.change} changeValue={this.changeValue} selectContent={selectContent} />
         </div>
         <div className="main-container" style={{ height: height - 32 + "px" }}>
           <div className="edit-container">
