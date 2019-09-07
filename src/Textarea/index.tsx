@@ -38,7 +38,7 @@ export default class Textarea extends React.Component<IProps, {}> {
     const scrollHeight = e.target.scrollHeight
     const clientHeight = e.target.clientHeight
     const scrollRatio = scrollTop / (scrollHeight - clientHeight)
-    changeScrollRatio(scrollTop)
+    changeScrollRatio(scrollRatio)
   }
 
   public shouldComponentUpdate(nextProps: Readonly<IProps>, nextState: Readonly<{}>, nextContext: any): boolean {
@@ -46,7 +46,6 @@ export default class Textarea extends React.Component<IProps, {}> {
     const scrollHeight = this.$textarea.current.scrollHeight
     const clientHeight = this.$textarea.current.clientHeight
     // this.$textarea.current.scrollTop = (scrollHeight - clientHeight) * scrollRatio
-    this.$textarea.current.scrollTop = scrollRatio
     return true
   }
 

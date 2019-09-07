@@ -21,7 +21,6 @@ export default class Preview extends React.Component<IProps, {}> {
     const scrollHeight = this.$preview.current.scrollHeight
     const clientHeight = this.$preview.current.clientHeight
     // this.$preview.current.scrollTop = (scrollHeight - clientHeight) * scrollRatio
-    this.$preview.current.scrollTop = scrollRatio
     if (content === this.props.content) {
       return false;
     }
@@ -34,7 +33,7 @@ export default class Preview extends React.Component<IProps, {}> {
     const scrollHeight = e.target.scrollHeight
     const clientHeight = e.target.clientHeight
     const scrollRatio = scrollTop / (scrollHeight - clientHeight)
-    changeScrollRatio(scrollTop)
+    changeScrollRatio(scrollRatio)
   }
 
   public render() {
