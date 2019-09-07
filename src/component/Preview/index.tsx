@@ -1,5 +1,5 @@
 import React from "react";
-import marked from '../../utils/marked'
+import marked from '../../../utils/marked'
 import './index.scss'
 
 interface IProps {

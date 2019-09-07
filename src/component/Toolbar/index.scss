@@ -55,6 +55,12 @@
             }
           }
         }
+        &.disable{
+          cursor: not-allowed;
+          &:hover {
+           color: #999999;
+          }
+        }
       }
     }
   }

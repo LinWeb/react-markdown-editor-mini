@@ -1,11 +1,14 @@
 import React from "react";
 import "./index.scss";
-import { edit } from "../../utils/edit";
+import { edit } from "../../../utils/edit";
 
 interface Props {
   changeSelectContent: (value: string) => void;
   changeValue: (value: string) => void;
   selectContent: string;
+  history: (reduce: number) => void;
+  historyLength: number;
+  historyIndex: number;
 }
 export default class Toolbar extends React.Component<Props> {
   public constructor(props: Readonly<Props>) {
@@ -17,7 +20,9 @@ export default class Toolbar extends React.Component<Props> {
     changeSelectContent(value); // 如何返回新的内容
   };
   render() {
-    const { changeValue } = this.props
+    const { changeValue, historyLength, historyIndex } = this.props
+    const canRevoke = historyIndex !== historyLength - 1
+    const canRedo = historyIndex !== 0
     return (
       <div className="toolbar">
         <span className="iconfont iconbiaotizhengwenqiehuan title-operate" title='标题'>
@@ -136,8 +141,12 @@ export default class Toolbar extends React.Component<Props> {
           }}
         />
         <span className="iconfont iconshangchuantupian" title='上传图片' />
-        <span className="iconfont iconchexiao" title='撤销' />
-        <span className="iconfont iconzhongzuo" title='重做' />
+        <span className={(canRevoke ? '' : 'disable ') + "iconfont iconchexiao"} title='撤销' onClick={() => {
+          canRevoke && this.props.history(-1)
+        }} />
+        <span className={(canRedo ? '' : 'disable ') + "iconfont iconzhongzuo"} title='重做' onClick={() => {
+          canRedo && this.props.history(1)
+        }} />
         <span className="iconfont iconshanchu" title='清空' onClick={() => {
           changeValue('');
         }} />

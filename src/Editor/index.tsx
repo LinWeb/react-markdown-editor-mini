@@ -1,7 +1,7 @@
 import React from "react";
-import Toolbar from "../Toolbar/index";
-import Textarea from "../Textarea/index";
-import Preview from "../Preview/index";
+import Toolbar from "../component/Toolbar/index";
+import Textarea from "../component/Textarea/index";
+import Preview from "../component/Preview/index";
 import "./index.scss";
 
 interface Props {
@@ -15,6 +15,8 @@ interface State {
   selectStartIndex: number;
   selectEndIndex: number;
   scrollRatio: number;
+  historyValues: string[];
+  historyIndex: number;
 }
 export default class Editor extends React.Component<Props, State> {
   public constructor(props: Props) {
@@ -24,7 +26,9 @@ export default class Editor extends React.Component<Props, State> {
       selectContent: "",
       selectStartIndex: 0,
       selectEndIndex: 0,
-      scrollRatio: 0
+      scrollRatio: 0,
+      historyValues: [''],
+      historyIndex: 0,
     };
   }
 
@@ -40,12 +44,28 @@ export default class Editor extends React.Component<Props, State> {
     this.changeValue(newValue)
   }
 
-  public changeValue = (newValue: string) => {
+  public changeValue = (newValue: string, isHistory?: boolean) => {
+    const { value, historyValues } = this.state
+    if (value !== newValue) {
+      this.setState(() => {
+        return {
+          value: newValue,
+          historyValues: isHistory ? [...historyValues] : [newValue, ...historyValues]
+        };
+      });
+    }
+  }
+
+  public history = (reduce: number) => {
+    const { historyValues, historyIndex } = this.state
+    const index = historyIndex - reduce
+    const newValue = historyValues[index]
     this.setState(() => {
       return {
-        value: newValue
-      };
-    });
+        historyIndex: index
+      }
+    })
+    this.changeValue(newValue, true)
   }
 
   public getSelectContent = (selectStartIndex: number, selectEndIndex: number, selectContent: string) => {
@@ -71,15 +91,25 @@ export default class Editor extends React.Component<Props, State> {
     const {
       value,
       selectContent,
-      scrollRatio
+      scrollRatio,
+      historyValues,
+      historyIndex
     } = this.state;
+    console.log(this.state.historyValues)
     return (
       <div
         className="react-markdown-editor-container"
         style={{ width: width + "px" }}
       >
         <div className="toolbar-container">
-          <Toolbar changeSelectContent={this.changeSelectContent} changeValue={this.changeValue} selectContent={selectContent} />
+          <Toolbar
+            changeSelectContent={this.changeSelectContent}
+            changeValue={this.changeValue}
+            selectContent={selectContent}
+            history={this.history}
+            historyLength={historyValues.length}
+            historyIndex={historyIndex}
+          />
         </div>
         <div className="main-container" style={{ height: height - 32 + "px" }}>
           <div className="edit-container">

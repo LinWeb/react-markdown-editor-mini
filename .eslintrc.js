@@ -19,7 +19,7 @@ module.exports = {
     }
   },
   extends: [
-    // "eslint:recommended",s
+    // "eslint:recommended",
     // "plugin:import/errors",
     // "plugin:import/warnings",
     "plugin:react/recommended",
