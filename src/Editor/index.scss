@@ -11,6 +11,7 @@
   .main-container {
     .edit-container,
     .view-container {
+      box-sizing: border-box;
       height: 100%;
       float: left;
       width: 50%;
