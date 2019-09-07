@@ -15,9 +15,6 @@ export default class Textarea extends React.Component<IProps, {}> {
   public constructor(props: Readonly<IProps>) {
     super(props);
     this.$textarea = React.createRef()
-    this.state = {
-      scrollTop: 0
-    }
   }
 
   public onChange = (e: any) => {
