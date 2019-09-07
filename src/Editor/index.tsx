@@ -14,6 +14,7 @@ interface State {
   selectContent: string;
   selectStartIndex: number;
   selectEndIndex: number;
+  scrollRatio: number;
 }
 export default class Editor extends React.Component<Props, State> {
   public constructor(props: Props) {
@@ -22,7 +23,8 @@ export default class Editor extends React.Component<Props, State> {
       value: props.defaultValue || "",
       selectContent: "",
       selectStartIndex: 0,
-      selectEndIndex: 0
+      selectEndIndex: 0,
+      scrollRatio: 0
     };
   }
 
@@ -56,11 +58,20 @@ export default class Editor extends React.Component<Props, State> {
     });
   }
 
+  public changeScrollRatio = (scrollRatio: number) => {
+    this.setState(() => {
+      return {
+        scrollRatio
+      };
+    });
+  }
+
   public render() {
     const { width, height } = this.props;
     const {
       value,
-      selectContent
+      selectContent,
+      scrollRatio
     } = this.state;
     return (
       <div
@@ -74,12 +85,14 @@ export default class Editor extends React.Component<Props, State> {
           <div className="edit-container">
             <Textarea
               value={value}
+              scrollRatio={scrollRatio}
               changeValue={this.changeValue}
               getSelectContent={this.getSelectContent}
+              changeScrollRatio={this.changeScrollRatio}
             />
           </div>
           <div className="view-container">
-            <Preview content={value} />
+            <Preview scrollRatio={scrollRatio} content={value} changeScrollRatio={this.changeScrollRatio} />
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
 .view-container {
-    overflow-y:auto;
     .preview{
-        padding: 15px 6px;
+        overflow-y:auto;
+        height: 100%;
+        padding: 15px 8px;
+        box-sizing: border-box;
     }
   }
