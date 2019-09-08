@@ -1,5 +1,23 @@
 .iconbiaoge{
-    &.table{
-        
+    position:relative;
+    .table{
+        overflow: hidden;
+        position: absolute;
+        left: 12px;
+        width: 132px;
+        background-color: #fff;
+        padding: 5px;
+        .td{
+            list-style: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 3px;
+            background-color: #cecdcd;
+            float:left;
+            margin: 2px;
+            &.hover{
+                background-color:#999;
+            }
+        }
     }
 }
