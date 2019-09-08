@@ -46,6 +46,12 @@ export const edit = function (type: string, value: string) {
     case "link":
       newValue = `[${value}]()`;
       break;
+    case "code":
+      newValue = `\n\`\`\`javascript\n\n\`\`\`\n`;
+      break;
+    case "table":
+      newValue = `table`;
+      break;
     default:
   }
   return newValue;

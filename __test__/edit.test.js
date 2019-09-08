@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 /* eslint-disable no-undef */
 import { edit } from "../utils/edit";
 
@@ -53,4 +52,11 @@ describe("edit options", () => {
   test("link", () => {
     expect(edit("link", value)).toBe(`[${value}]()`);
   });
+  test("code", () => {
+    expect(edit("code", value)).toBe(`\n\`\`\`javascript\n\n\`\`\`\n`);
+  });
+  test("table", () => {
+    expect(edit("table", value)).toBe(`table`);
+  });
+
 });
