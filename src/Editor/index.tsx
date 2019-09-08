@@ -28,7 +28,7 @@ export default class Editor extends React.Component<Props, State> {
       selectStartIndex: 0,
       selectEndIndex: 0,
       scrollRatio: 0,
-      historyValues: [''],
+      historyValues: [props.defaultValue || ""],
       historyIndex: 0,
       isFullScreen: false
     };
