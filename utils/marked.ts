@@ -14,7 +14,7 @@ marked.setOptions({
   sanitize: true,
   smartLists: true,
   smartypants: false,
-  highlight: function(code: any) {
+  highlight: function (code: any) {
     return hljs.highlightAuto(code).value;
   }
 });

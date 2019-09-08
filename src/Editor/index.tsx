@@ -17,6 +17,7 @@ interface State {
   scrollRatio: number;
   historyValues: string[];
   historyIndex: number;
+  isFullScreen: boolean;
 }
 export default class Editor extends React.Component<Props, State> {
   public constructor(props: Props) {
@@ -29,6 +30,7 @@ export default class Editor extends React.Component<Props, State> {
       scrollRatio: 0,
       historyValues: [''],
       historyIndex: 0,
+      isFullScreen: false
     };
   }
 
@@ -86,6 +88,14 @@ export default class Editor extends React.Component<Props, State> {
     });
   }
 
+  public changeFullScreen = (isFullScreen: boolean) => {
+    this.setState(() => {
+      return {
+        isFullScreen
+      };
+    });
+  }
+
   public render() {
     const { width, height } = this.props;
     const {
@@ -93,18 +103,21 @@ export default class Editor extends React.Component<Props, State> {
       selectContent,
       scrollRatio,
       historyValues,
-      historyIndex
+      historyIndex,
+      isFullScreen
     } = this.state;
     console.log(this.state.historyValues)
     return (
       <div
-        className="react-markdown-editor-container"
+        className={'react-markdown-editor-container' + (isFullScreen ? ' full-screen' : '')}
         style={{ width: width + "px" }}
       >
         <div className="toolbar-container">
           <Toolbar
             changeSelectContent={this.changeSelectContent}
             changeValue={this.changeValue}
+            changeFullScreen={this.changeFullScreen}
+            isFullScreen={isFullScreen}
             selectContent={selectContent}
             history={this.history}
             historyLength={historyValues.length}

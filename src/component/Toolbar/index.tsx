@@ -5,6 +5,8 @@ import { edit } from "../../../utils/edit";
 interface Props {
   changeSelectContent: (value: string) => void;
   changeValue: (value: string) => void;
+  changeFullScreen: (isFullScreen: boolean) => void;
+  isFullScreen: boolean;
   selectContent: string;
   history: (reduce: number) => void;
   historyLength: number;
@@ -19,8 +21,12 @@ export default class Toolbar extends React.Component<Props> {
     const value = edit(type, selectContent);
     changeSelectContent(value); // 如何返回新的内容
   };
+  public changeFullScreen = () => {
+    const { changeFullScreen, isFullScreen } = this.props
+    changeFullScreen(!isFullScreen)
+  }
   render() {
-    const { changeValue, historyLength, historyIndex } = this.props
+    const { changeValue, historyLength, historyIndex, isFullScreen } = this.props
     const canRevoke = historyIndex !== historyLength - 1
     const canRedo = historyIndex !== 0
     return (
@@ -140,6 +146,21 @@ export default class Toolbar extends React.Component<Props> {
             this.click("link");
           }}
         />
+        <span
+          className="iconfont iconbiaoge"
+          title='表格'
+          onClick={() => {
+            this.click("table");
+          }}
+        />
+        <span
+          className="iconfont icondaima"
+          style={{ fontSize: '21px' }}
+          title='代码'
+          onClick={() => {
+            this.click("code");
+          }}
+        />
         <span className="iconfont iconshangchuantupian" title='上传图片' />
         <span className={(canRevoke ? '' : 'disable ') + "iconfont iconchexiao"} title='撤销' onClick={() => {
           canRevoke && this.props.history(-1)
@@ -150,6 +171,15 @@ export default class Toolbar extends React.Component<Props> {
         <span className="iconfont iconshanchu" title='清空' onClick={() => {
           changeValue('');
         }} />
+        <span
+          className="iconfont iconbaocun"
+          title='保存'
+        />
+        <span
+          className={"iconfont fullScreen " + (isFullScreen ? 'icontuichuquanping' : 'iconquanping')}
+          title={(isFullScreen ? '退出全屏' : '全屏')}
+          onClick={this.changeFullScreen}
+        />
       </div>
     );
   }
