@@ -1,4 +1,4 @@
-export const edit = function (type: string, value: string) {
+export const edit = function (type: string, value: string, params?: any) {
   let newValue = "";
   switch (type) {
     case "H1":
@@ -50,7 +50,21 @@ export const edit = function (type: string, value: string) {
       newValue = `\n\`\`\`javascript\n\n\`\`\`\n`;
       break;
     case "table":
-      newValue = `table`;
+      const [x, y] = params;
+      newValue = `|`
+      for (let j = 0; j < y; j++) {
+        newValue += ` Head |`
+      }
+      newValue += `\n|`
+      for (let j = 0; j < y; j++) {
+        newValue += ` --- |`
+      }
+      for (let i = 0; i < x; i++) {
+        newValue += `\n|`
+        for (let j = 0; j < y; j++) {
+          newValue += ` Data |`
+        }
+      }
       break;
     default:
   }

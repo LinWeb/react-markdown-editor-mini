@@ -19,9 +19,9 @@ export default class Toolbar extends React.Component<Props> {
   public constructor(props: Readonly<Props>) {
     super(props);
   }
-  public editHandle = (type: string) => {
+  public editHandle = (type: string, params?: any) => {
     let { changeSelectContent, selectContent } = this.props;
-    const value = edit(type, selectContent);
+    const value = edit(type, selectContent, params);
     changeSelectContent(value); // 如何返回新的内容
   };
   public changeFullScreen = () => {

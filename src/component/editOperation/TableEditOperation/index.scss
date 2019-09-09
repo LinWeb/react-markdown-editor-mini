@@ -1,9 +1,15 @@
 .iconbiaoge{
     position:relative;
+    &:hover{
+        .table{
+            display: block;
+        }
+    }
     .table{
+        display: none;
         overflow: hidden;
         position: absolute;
-        left: 12px;
+        left: 1px;
         width: 132px;
         background-color: #fff;
         padding: 5px;

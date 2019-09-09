@@ -2,41 +2,64 @@ import React from "react";
 import './index.scss'
 
 interface IProps {
-    editHandle: (type: string) => void;
+    editHandle: (type: string, params: any) => void;
 }
 
 interface IState {
-    hoverKey: number
+    currentSite: number[],
+    row: number;
+    column: number;
 }
 
 export default class TableEditOperation extends React.Component<IProps, IState> {
     public constructor(props: Readonly<IProps>) {
         super(props)
         this.state = {
-            hoverKey: -1
+            currentSite: [-1, -1],
+            row: 4,
+            column: 6
         }
     }
 
-    onMouseEnter(key: number) {
+    public onMouseEnter([x, y]: number[]) {
         this.setState(() => {
             return {
-                hoverKey: key
+                currentSite: [x, y]
             }
         })
     }
+
+    public getClass([x, y]: number[]): string {
+        const { currentSite, } = this.state;
+        const [currentX, currentY] = currentSite
+        return x <= currentX && y <= currentY ? 'hover' : ''
+
+    }
     public render() {
         let { editHandle } = this.props;
-        let { hoverKey } = this.state;
+        const { row, column } = this.state
+        let arr = []
+        for (let i = 1; i <= row; i++) {
+            for (let j = 1; j <= column; j++) {
+                let a = [i]
+                a.push(j)
+                arr.push(a)
+            }
+        }
         return <span
             className="iconfont iconbiaoge"
             title="表格"
-            onClick={() => {
-
-            }}
         >
             <ul className='table'>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24].map((item, key) =>
-                    <li key={String(key)} className={'td ' + (key < hoverKey ? 'hover' : '')} onMouseEnter={() => { this.onMouseEnter(item) }}></li>
+                {arr.map((item, key) =>
+                    <li key={String(key)}
+                        className={'td ' + this.getClass(item)}
+                        onMouseEnter={() => { this.onMouseEnter(item) }}
+                        onClick={() => {
+                            editHandle('table', item);
+                        }}
+                    >
+                    </li>
                 )}
             </ul>
         </span>;
