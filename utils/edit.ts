@@ -1,4 +1,4 @@
-export const edit = function (type: string, value: string, params?: any) {
+export default function(type: string, value: string, params?: any) {
   let newValue = "";
   switch (type) {
     case "H1":
@@ -51,22 +51,22 @@ export const edit = function (type: string, value: string, params?: any) {
       break;
     case "table":
       const [x, y] = params;
-      newValue = `|`
+      newValue = `|`;
       for (let j = 0; j < y; j++) {
-        newValue += ` Head |`
+        newValue += ` Head |`;
       }
-      newValue += `\n|`
+      newValue += `\n|`;
       for (let j = 0; j < y; j++) {
-        newValue += ` --- |`
+        newValue += ` --- |`;
       }
       for (let i = 0; i < x; i++) {
-        newValue += `\n|`
+        newValue += `\n|`;
         for (let j = 0; j < y; j++) {
-          newValue += ` Data |`
+          newValue += ` Data |`;
         }
       }
       break;
     default:
   }
   return newValue;
-};
+}

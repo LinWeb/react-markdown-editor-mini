@@ -6,7 +6,7 @@ import {
   TableEditOperation,
   UploadImgOperation
 } from "../editOperation/index";
-import { edit } from "../../../utils/edit";
+import { Edit } from "../../../utils/index";
 
 interface Props {
   changeSelectContent: (value: string) => void;
@@ -25,7 +25,7 @@ export default class Toolbar extends React.Component<Props> {
   }
   public editHandle = (type: string, params?: any) => {
     let { changeSelectContent, selectContent } = this.props;
-    const value = edit(type, selectContent, params);
+    const value = Edit(type, selectContent, params);
     changeSelectContent(value); // 如何返回新的内容
   };
   public changeFullScreen = () => {
