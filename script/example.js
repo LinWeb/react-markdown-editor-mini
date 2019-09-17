@@ -1,8 +1,9 @@
 export default {
   width: 733,
   height: 434,
+  defaultValue: '',
   defaultValue1: '',
-  defaultValue: `# h1 Heading 8-)
+  defaultValue2: `# h1 Heading 8-)
   ## h2 Heading
   ### h3 Heading
   #### h4 Heading

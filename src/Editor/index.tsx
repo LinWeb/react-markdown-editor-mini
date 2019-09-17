@@ -48,6 +48,7 @@ export default class Editor extends React.Component<Props, State> {
 
   public changeValue = (newValue: string, isHistory?: boolean) => {
     const { value, historyValues } = this.state
+    console.log(44444444, isHistory, value, newValue)
     if (value !== newValue) {
       this.setState(() => {
         return {

@@ -4,23 +4,44 @@ import "./index.scss";
 interface IProps {
   value: string;
   scrollRatio: number;
-  changeValue: (value: string) => void;
+  changeValue: (value: string, isHistory?: boolean) => void;
   getSelectContent: (selectStartIndex: number, selectEndIndex: number, selectContent: string) => void;
   changeScrollRatio: (scrollRatio: number) => void;
 }
 
-export default class Textarea extends React.Component<IProps, {}> {
+interface IState {
+  isInputChinese: boolean;
+}
+
+export default class Textarea extends React.Component<IProps, IState> {
   private $textarea: any;
 
   public constructor(props: Readonly<IProps>) {
     super(props);
     this.$textarea = React.createRef()
+    this.state = {
+      isInputChinese: false
+    }
   }
 
   public onChange = (e: any) => {
     const value = e.target.value;
-    this.props.changeValue(value);
+    const { isInputChinese } = this.state
+    console.log(2222, isInputChinese)
+    this.props.changeValue(value, isInputChinese);
   };
+
+  public onCompositionStart = () => {
+    this.setState({ isInputChinese: true })
+    console.log(111111111)
+  }
+
+  public onCompositionEnd = (e: any) => {
+    const value = e.target.value;
+    this.setState({ isInputChinese: false })
+    console.log(3333, value)
+    this.props.changeValue(value);
+  }
 
   public onMouseUp = (e: any) => {
     const selectStartIndex = e.target.selectionStart
@@ -54,6 +75,8 @@ export default class Textarea extends React.Component<IProps, {}> {
         value={value}
         ref={this.$textarea}
         onChange={this.onChange}
+        onCompositionStart={this.onCompositionStart}
+        onCompositionEnd={this.onCompositionEnd}
         onMouseUp={this.onMouseUp}
         onScroll={this.onScroll}
       ></textarea>
