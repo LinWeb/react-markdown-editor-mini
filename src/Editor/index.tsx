@@ -46,10 +46,9 @@ export default class Editor extends React.Component<Props, State> {
     this.changeValue(newValue)
   }
 
-  public changeValue = (newValue: string, isHistory?: boolean) => {
+  public changeValue = (newValue: string, isHistory?: boolean, isInputChinese?: boolean) => {
     const { value, historyValues } = this.state
-    console.log(44444444, isHistory, value, newValue)
-    if (value !== newValue) {
+    if (value !== newValue || isInputChinese) {
       this.setState(() => {
         return {
           value: newValue,
@@ -107,7 +106,6 @@ export default class Editor extends React.Component<Props, State> {
       historyIndex,
       isFullScreen
     } = this.state;
-    console.log(this.state.historyValues)
     return (
       <div
         className={'react-markdown-editor-container' + (isFullScreen ? ' full-screen' : '')}

@@ -4,7 +4,7 @@ import "./index.scss";
 interface IProps {
   value: string;
   scrollRatio: number;
-  changeValue: (value: string, isHistory?: boolean) => void;
+  changeValue: (value: string, isHistory?: boolean, isInputChinese?: boolean) => void;
   getSelectContent: (selectStartIndex: number, selectEndIndex: number, selectContent: string) => void;
   changeScrollRatio: (scrollRatio: number) => void;
 }
@@ -27,20 +27,17 @@ export default class Textarea extends React.Component<IProps, IState> {
   public onChange = (e: any) => {
     const value = e.target.value;
     const { isInputChinese } = this.state
-    console.log(2222, isInputChinese)
     this.props.changeValue(value, isInputChinese);
   };
 
   public onCompositionStart = () => {
     this.setState({ isInputChinese: true })
-    console.log(111111111)
   }
 
   public onCompositionEnd = (e: any) => {
     const value = e.target.value;
+    this.props.changeValue(value, false, true);
     this.setState({ isInputChinese: false })
-    console.log(3333, value)
-    this.props.changeValue(value);
   }
 
   public onMouseUp = (e: any) => {
