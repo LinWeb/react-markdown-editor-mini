@@ -8,8 +8,9 @@
   "license": "MIT",
   "scripts": {
     "test": "jest --watch",
-    "start": "webpack-dev-server --hot",
-    "build": "webpack"
+    "start": "webpack-dev-server --hot  --config config/webpack.config.js",
+    "build": "webpack --config config/webpack.config.js",
+    "prod": "webpack --config config/webpack.prod.js"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
