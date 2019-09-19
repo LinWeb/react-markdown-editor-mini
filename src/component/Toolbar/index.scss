@@ -27,27 +27,27 @@
             padding:4px 0;
             li{
               cursor: pointer;
-              width: 110px;
+              width: 100px;
               text-align:center;
               color: #111111;
-              padding:6px 0;
+              padding:4px 0;
               &:hover{
                 background-color:#f1f1f1;
               }
               &.h1{
-                font-size: 32px;
+                font-size: 27px;
               }
               &.h2{
-                font-size: 28px;
-              }
-              &.h3{
                 font-size: 24px;
               }
+              &.h3{
+                font-size: 21px;
+              }
               &.h4{
-                font-size: 20px;
+                font-size: 18px;
               }
               &.h5{
-                font-size: 16px;
+                font-size: 15px;
               }
               &.h6{
                 font-size: 12px;
