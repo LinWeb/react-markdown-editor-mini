@@ -17,6 +17,8 @@ interface Props {
   history: (reduce: number) => void;
   historyLength: number;
   historyIndex: number;
+  saveContent: () => void;
+  clearContent: () => void;
 }
 
 export default class Toolbar extends React.Component<Props> {
@@ -34,10 +36,11 @@ export default class Toolbar extends React.Component<Props> {
   };
   render() {
     const {
-      changeValue,
       historyLength,
       historyIndex,
-      isFullScreen
+      isFullScreen,
+      saveContent,
+      clearContent
     } = this.props;
     const canRevoke = historyIndex !== historyLength - 1;
     const canRedo = historyIndex !== 0;
@@ -67,10 +70,12 @@ export default class Toolbar extends React.Component<Props> {
           className="iconfont iconshanchu"
           title="清空"
           onClick={() => {
-            changeValue("");
+            clearContent()
           }}
         />
-        <span className="iconfont iconbaocun" title="保存" />
+        <span className="iconfont iconbaocun" title="保存" onClick={() => {
+          saveContent()
+        }} />
         <span
           className={
             "iconfont fullScreen " +

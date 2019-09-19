@@ -9,6 +9,7 @@ interface Props {
   height: number;
   defaultValue: string;
 }
+
 interface State {
   value: string;
   selectContent: string;
@@ -19,11 +20,12 @@ interface State {
   historyIndex: number;
   isFullScreen: boolean;
 }
+
 export default class Editor extends React.Component<Props, State> {
   public constructor(props: Props) {
     super(props);
     this.state = {
-      value: props.defaultValue || "",
+      value: props.defaultValue || window.localStorage.getItem('REAT_MARKDOWN_VALUE') || "",
       selectContent: "",
       selectStartIndex: 0,
       selectEndIndex: 0,
@@ -96,6 +98,16 @@ export default class Editor extends React.Component<Props, State> {
     });
   }
 
+  public saveContent = () => {
+    const { value } = this.state;
+    window.localStorage.setItem('REAT_MARKDOWN_VALUE', value)
+  }
+
+  public clearContent = () => {
+    this.changeValue('')
+    window.localStorage.removeItem('REAT_MARKDOWN_VALUE')
+  }
+
   public render() {
     const { width, height } = this.props;
     const {
@@ -121,6 +133,8 @@ export default class Editor extends React.Component<Props, State> {
             history={this.history}
             historyLength={historyValues.length}
             historyIndex={historyIndex}
+            saveContent={this.saveContent}
+            clearContent={this.clearContent}
           />
         </div>
         <div className="main-container" style={{ height: height - 32 + "px" }}>
