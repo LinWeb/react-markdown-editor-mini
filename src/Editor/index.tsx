@@ -3,11 +3,14 @@ import Toolbar from "../component/Toolbar/index";
 import Textarea from "../component/Textarea/index";
 import Preview from "../component/Preview/index";
 import "./index.scss";
+import { Marked } from "../../utils/index";
 
 interface Props {
-  width: number;
-  height: number;
-  defaultValue: string;
+  width?: number;
+  height?: number;
+  defaultValue?: string;
+  isFullScreen?: boolean;
+  onChange?: (value: string, html: string) => void;
 }
 
 interface State {
@@ -25,54 +28,64 @@ export default class Editor extends React.Component<Props, State> {
   public constructor(props: Props) {
     super(props);
     this.state = {
-      value: props.defaultValue || window.localStorage.getItem('REAT_MARKDOWN_VALUE') || "",
+      value:
+        props.defaultValue ||
+        window.localStorage.getItem("REAT_MARKDOWN_VALUE") ||
+        "",
       selectContent: "",
       selectStartIndex: 0,
       selectEndIndex: 0,
       scrollRatio: 0,
       historyValues: [props.defaultValue || ""],
       historyIndex: 0,
-      isFullScreen: false
+      isFullScreen: props.isFullScreen || false
     };
   }
 
   public changeSelectContent = (newSelectContent: string) => {
-    const {
-      value,
-      selectStartIndex,
-      selectEndIndex,
-    } = this.state;
+    const { value, selectStartIndex, selectEndIndex } = this.state;
     let start = value.substring(0, selectStartIndex);
     let end = value.substring(selectEndIndex);
-    let newValue = start + newSelectContent + end
-    this.changeValue(newValue)
-  }
+    let newValue = start + newSelectContent + end;
+    this.changeValue(newValue);
+  };
 
-  public changeValue = (newValue: string, isHistory?: boolean, isInputChinese?: boolean) => {
-    const { value, historyValues } = this.state
+  public changeValue = (
+    newValue: string,
+    isHistory?: boolean,
+    isInputChinese?: boolean
+  ) => {
+    const { value, historyValues } = this.state;
     if (value !== newValue || isInputChinese) {
+      !isHistory && this.props.onChange(newValue, Marked(newValue || "")); // 回调函数返回输入域的值和生成对应的html
       this.setState(() => {
         return {
           value: newValue,
-          historyValues: isHistory ? [...historyValues] : [newValue, ...historyValues]
+          historyValues: isHistory
+            ? [...historyValues]
+            : [newValue, ...historyValues]
         };
       });
     }
-  }
+  };
 
   public history = (reduce: number) => {
-    const { historyValues, historyIndex } = this.state
-    const index = historyIndex - reduce
-    const newValue = historyValues[index]
+    const { historyValues, historyIndex } = this.state;
+    const index = historyIndex - reduce;
+    const newValue = historyValues[index];
     this.setState(() => {
       return {
         historyIndex: index
-      }
-    })
-    this.changeValue(newValue, true)
-  }
+      };
+    });
+    this.changeValue(newValue, true);
+  };
 
-  public getSelectContent = (selectStartIndex: number, selectEndIndex: number, selectContent: string) => {
+  public getSelectContent = (
+    selectStartIndex: number,
+    selectEndIndex: number,
+    selectContent: string
+  ) => {
     this.setState(() => {
       return {
         selectStartIndex,
@@ -80,7 +93,7 @@ export default class Editor extends React.Component<Props, State> {
         selectContent
       };
     });
-  }
+  };
 
   public changeScrollRatio = (scrollRatio: number) => {
     this.setState(() => {
@@ -88,7 +101,7 @@ export default class Editor extends React.Component<Props, State> {
         scrollRatio
       };
     });
-  }
+  };
 
   public changeFullScreen = (isFullScreen: boolean) => {
     this.setState(() => {
@@ -96,17 +109,17 @@ export default class Editor extends React.Component<Props, State> {
         isFullScreen
       };
     });
-  }
+  };
 
   public saveContent = () => {
     const { value } = this.state;
-    window.localStorage.setItem('REAT_MARKDOWN_VALUE', value)
-  }
+    window.localStorage.setItem("REAT_MARKDOWN_VALUE", value);
+  };
 
   public clearContent = () => {
-    this.changeValue('')
-    window.localStorage.removeItem('REAT_MARKDOWN_VALUE')
-  }
+    this.changeValue("");
+    window.localStorage.removeItem("REAT_MARKDOWN_VALUE");
+  };
 
   public render() {
     const { width, height } = this.props;
@@ -120,7 +133,10 @@ export default class Editor extends React.Component<Props, State> {
     } = this.state;
     return (
       <div
-        className={'react-markdown-editor-container' + (isFullScreen ? ' full-screen' : '')}
+        className={
+          "react-markdown-editor-container" +
+          (isFullScreen ? " full-screen" : "")
+        }
         style={{ width: width + "px" }}
       >
         <div className="toolbar-container">
@@ -148,7 +164,11 @@ export default class Editor extends React.Component<Props, State> {
             />
           </div>
           <div className="view-container">
-            <Preview scrollRatio={scrollRatio} content={value} changeScrollRatio={this.changeScrollRatio} />
+            <Preview
+              scrollRatio={scrollRatio}
+              content={value}
+              changeScrollRatio={this.changeScrollRatio}
+            />
           </div>
         </div>
       </div>
