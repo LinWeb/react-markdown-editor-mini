@@ -4,6 +4,7 @@ const merge = require("webpack-merge");
 const baseConfig = require("./webpack.base.js");
 
 const devConfig = {
+  mode: "development",
   entry: "./src/index.js",
   output: {
     path: path.join(__dirname, "../", "dist"),
