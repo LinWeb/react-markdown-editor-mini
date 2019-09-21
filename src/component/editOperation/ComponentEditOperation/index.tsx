@@ -17,19 +17,22 @@ export default class ComponentEditOperation extends React.Component<IProps, {}> 
             title: '斜体',
             icon: 'iconxieti'
         },
+        // {
+        //     key: 'underline',
+        //     title: '下划线',
+        //     icon: 'iconxiahuaxian'
+        // },
         {
-            key: 'underline',
-            title: '下划线',
-            icon: 'iconxiahuaxian'
-        }, {
             key: 'strikethrough',
             title: '删除线',
             icon: 'iconeditor-strikethrough'
-        }, {
+        },
+        {
             key: 'unorder',
             title: '无序列表',
             icon: 'iconwuxuliebiao'
-        }, {
+        },
+        {
             key: 'order',
             title: '有序列表',
             icon: 'iconyouxuliebiao'

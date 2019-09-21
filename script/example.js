@@ -1,13 +1,12 @@
 export default {
   width: 733,
-  height: 534,
+  height: 434,
   isFullScreen: false,
   onChange: (value, html) => {
-    console.log(value, html);
+    // console.log(value, html);
   },
-  defaultValue: "333333",
-  defaultValue1: "",
-  defaultValue2: `# h1 Heading 8-)
+  defaultValue: `
+  # h1 Heading
   ## h2 Heading
   ### h3 Heading
   #### h4 Heading

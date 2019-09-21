@@ -8,7 +8,7 @@ const prodConfig = {
   output: {
     path: path.join(__dirname, "../", "lib"),
     filename: "index.js",
-    libraryTarget: "umd"
+    libraryTarget: "umd"   // 构建后输出通用模式，这一步不要漏了
   },
   externals: {
     react: 'react',

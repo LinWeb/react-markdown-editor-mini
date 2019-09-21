@@ -6234,15 +6234,10 @@ react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.npm.taobao.org/react-is/download/react-is-16.9.0.tgz?cache=0&sync_timestamp=1565317930066&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-is%2Fdownload%2Freact-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
   integrity sha1-IcqVYTmarQ/xp3AcAWg+jKmB7cs=
 
-react-markdown-editor-lite@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.npmjs.org/react-markdown-editor-lite/-/react-markdown-editor-lite-0.4.3.tgz#f0a58dd9347e3031f4f0d127145b43a38f2e0d59"
-  integrity sha512-smFvtL4/jkJ7oLYKKZUw3aneaxUMkPy0NDBLcv1oJIDIP4U5Cg5hK6mG0kVOUW6jh7GhmbdtsC4KMjSIYrmAcA==
-
-react-markdown-editor-mini@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.npmjs.org/react-markdown-editor-mini/-/react-markdown-editor-mini-0.0.3.tgz#3970c43e781d51d499c353c5ce0ec961c9130eff"
-  integrity sha512-w4IRpHs6muxENnUk/i8UXf3nrEPqbS1LOBwZZWLeyQevdpoCvINXI99ZiyszpAErXf1Zq9bwrpBC57YO5x7Bog==
+react-markdown-editor-mini@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/react-markdown-editor-mini/-/react-markdown-editor-mini-0.0.4.tgz#b1c84b790d27e4f82bd458bbedbb9539ac7ad733"
+  integrity sha512-qtG4YzHx2zoLHaKvffYImq0FJtG2Qo1xn9AQMnrIMTTDanIhnUkS9csv+fPftBEtCADsihLu3zw/ZnrLUWk71g==
   dependencies:
     highlight.js "^9.15.10"
     marked "^0.7.0"

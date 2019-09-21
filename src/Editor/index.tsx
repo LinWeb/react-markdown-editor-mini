@@ -122,7 +122,7 @@ export default class Editor extends React.Component<Props, State> {
   };
 
   public render() {
-    const { width, height } = this.props;
+    const { width = 614, height = 300 } = this.props;
     const {
       value,
       selectContent,

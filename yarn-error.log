@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add --dev @babel/preset-typescript
+  C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js build
 
 PATH: 
   C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\Skype\Phone\;;C:\Users\Administrator\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Administrator\AppData\Roaming\npm
@@ -14,26 +14,32 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'E:\www\react-markdown-editor\node_modules\@babel\plugin-transform-named-capturing-groups-regex\node_modules\.bin'
+  SyntaxError: E:\www\react-markdown-editor\package.json: Unexpected token } in JSON at position 432
+      at JSON.parse (<anonymous>)
+      at C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:304:30)
+      at C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:315:13
 
 npm manifest: 
   {
-    "name": "react-markdown-editor",
-    "version": "0.0.1",
+    "name": "react-markdown-editor-mini",
+    "version": "0.0.3",
     "description": "基于react的markdown编辑器",
-    "main": "src/index.js",
+    "main": "lib/index.js",
     "repository": "https://github.com/LinWeb/react-markdown-editor.git",
     "author": "lxs <798738148@qq.com>",
     "license": "MIT",
     "scripts": {
       "test": "jest --watch",
-      "start": "webpack-dev-server --hot",
-      "build": "webpack"
+      "start": "webpack-dev-server --hot --config config/webpack.dev.js",
+      "build": "webpack --config config/webpack.prod.js",
     },
     "devDependencies": {
       "@babel/core": "^7.5.5",
       "@babel/preset-env": "7.3.1",
       "@babel/preset-react": "7.0.0",
+      "@babel/preset-typescript": "^7.6.0",
       "@types/react": "^16.9.2",
       "babel-loader": "^8.0.6",
       "css-loader": "^3.2.0",
@@ -46,20 +52,24 @@ npm manifest:
       "html-webpack-plugin": "^3.2.0",
       "jest": "^24.9.0",
       "node-sass": "^4.12.0",
+      "react-markdown-editor-lite": "^0.4.3",
+      "react-markdown-editor-mini": "^0.0.3",
       "sass-loader": "^7.3.1",
       "style-loader": "^1.0.0",
       "ts-loader": "^6.0.4",
       "typescript": "^3.5.3",
       "webpack": "^4.39.2",
       "webpack-cli": "^3.3.7",
-      "webpack-dev-server": "^3.8.0"
+      "webpack-dev-server": "^3.8.0",
+      "webpack-merge": "^4.2.2"
     },
     "dependencies": {
       "highlight.js": "^9.15.10",
       "marked": "^0.7.0",
       "react": "^16.9.0",
       "react-dom": "^16.9.0"
-    }
+    },
+    "files": []
   }
 
 yarn manifest: 
@@ -139,6 +149,18 @@ Lockfile:
       "@babel/helper-hoist-variables" "^7.4.4"
       "@babel/traverse" "^7.4.4"
       "@babel/types" "^7.4.4"
+  
+  "@babel/helper-create-class-features-plugin@^7.6.0":
+    version "7.6.0"
+    resolved "https://registry.npm.taobao.org/@babel/helper-create-class-features-plugin/download/@babel/helper-create-class-features-plugin-7.6.0.tgz#769711acca889be371e9bc2eb68641d55218021f"
+    integrity sha1-dpcRrMqIm+Nx6bwutoZB1VIYAh8=
+    dependencies:
+      "@babel/helper-function-name" "^7.1.0"
+      "@babel/helper-member-expression-to-functions" "^7.5.5"
+      "@babel/helper-optimise-call-expression" "^7.0.0"
+      "@babel/helper-plugin-utils" "^7.0.0"
+      "@babel/helper-replace-supers" "^7.5.5"
+      "@babel/helper-split-export-declaration" "^7.4.4"
   
   "@babel/helper-define-map@^7.5.5":
     version "7.5.5"
@@ -368,6 +390,13 @@ Lockfile:
     version "7.2.0"
     resolved "https://registry.npm.taobao.org/@babel/plugin-syntax-optional-catch-binding/download/@babel/plugin-syntax-optional-catch-binding-7.2.0.tgz#a94013d6eda8908dfe6a477e7f9eda85656ecf5c"
     integrity sha1-qUAT1u2okI3+akd+f57ahWVuz1w=
+    dependencies:
+      "@babel/helper-plugin-utils" "^7.0.0"
+  
+  "@babel/plugin-syntax-typescript@^7.2.0":
+    version "7.3.3"
+    resolved "https://registry.npm.taobao.org/@babel/plugin-syntax-typescript/download/@babel/plugin-syntax-typescript-7.3.3.tgz#a7cc3f66119a9f7ebe2de5383cce193473d65991"
+    integrity sha1-p8w/ZhGan36+LeU4PM4ZNHPWWZE=
     dependencies:
       "@babel/helper-plugin-utils" "^7.0.0"
   
@@ -619,6 +648,15 @@ Lockfile:
     dependencies:
       "@babel/helper-plugin-utils" "^7.0.0"
   
+  "@babel/plugin-transform-typescript@^7.6.0":
+    version "7.6.0"
+    resolved "https://registry.npm.taobao.org/@babel/plugin-transform-typescript/download/@babel/plugin-transform-typescript-7.6.0.tgz#48d78405f1aa856ebeea7288a48a19ed8da377a6"
+    integrity sha1-SNeEBfGqhW6+6nKIpIoZ7Y2jd6Y=
+    dependencies:
+      "@babel/helper-create-class-features-plugin" "^7.6.0"
+      "@babel/helper-plugin-utils" "^7.0.0"
+      "@babel/plugin-syntax-typescript" "^7.2.0"
+  
   "@babel/plugin-transform-unicode-regex@^7.2.0":
     version "7.4.4"
     resolved "https://registry.npm.taobao.org/@babel/plugin-transform-unicode-regex/download/@babel/plugin-transform-unicode-regex-7.4.4.tgz#ab4634bb4f14d36728bf5978322b35587787970f"
@@ -687,6 +725,14 @@ Lockfile:
       "@babel/plugin-transform-react-jsx" "^7.0.0"
       "@babel/plugin-transform-react-jsx-self" "^7.0.0"
       "@babel/plugin-transform-react-jsx-source" "^7.0.0"
+  
+  "@babel/preset-typescript@^7.6.0":
+    version "7.6.0"
+    resolved "https://registry.npm.taobao.org/@babel/preset-typescript/download/@babel/preset-typescript-7.6.0.tgz#25768cb8830280baf47c45ab1a519a9977498c98"
+    integrity sha1-JXaMuIMCgLr0fEWrGlGamXdJjJg=
+    dependencies:
+      "@babel/helper-plugin-utils" "^7.0.0"
+      "@babel/plugin-transform-typescript" "^7.6.0"
   
   "@babel/template@^7.1.0", "@babel/template@^7.4.0", "@babel/template@^7.4.4":
     version "7.4.4"
@@ -4861,7 +4907,7 @@ Lockfile:
     resolved "https://registry.npm.taobao.org/lodash.sortby/download/lodash.sortby-4.7.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash.sortby%2Fdownload%2Flodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
     integrity sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
   
-  lodash@^4.0.0, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.3, lodash@~4.17.10:
+  lodash@^4.0.0, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.3, lodash@~4.17.10:
     version "4.17.15"
     resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.15.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
     integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
@@ -6265,6 +6311,21 @@ Lockfile:
     version "16.9.0"
     resolved "https://registry.npm.taobao.org/react-is/download/react-is-16.9.0.tgz?cache=0&sync_timestamp=1565317930066&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-is%2Fdownload%2Freact-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
     integrity sha1-IcqVYTmarQ/xp3AcAWg+jKmB7cs=
+  
+  react-markdown-editor-lite@^0.4.3:
+    version "0.4.3"
+    resolved "https://registry.npmjs.org/react-markdown-editor-lite/-/react-markdown-editor-lite-0.4.3.tgz#f0a58dd9347e3031f4f0d127145b43a38f2e0d59"
+    integrity sha512-smFvtL4/jkJ7oLYKKZUw3aneaxUMkPy0NDBLcv1oJIDIP4U5Cg5hK6mG0kVOUW6jh7GhmbdtsC4KMjSIYrmAcA==
+  
+  react-markdown-editor-mini@^0.0.3:
+    version "0.0.3"
+    resolved "https://registry.npmjs.org/react-markdown-editor-mini/-/react-markdown-editor-mini-0.0.3.tgz#3970c43e781d51d499c353c5ce0ec961c9130eff"
+    integrity sha512-w4IRpHs6muxENnUk/i8UXf3nrEPqbS1LOBwZZWLeyQevdpoCvINXI99ZiyszpAErXf1Zq9bwrpBC57YO5x7Bog==
+    dependencies:
+      highlight.js "^9.15.10"
+      marked "^0.7.0"
+      react "^16.9.0"
+      react-dom "^16.9.0"
   
   react@^16.9.0:
     version "16.9.0"
@@ -7876,6 +7937,13 @@ Lockfile:
     dependencies:
       ansi-colors "^3.0.0"
       uuid "^3.3.2"
+  
+  webpack-merge@^4.2.2:
+    version "4.2.2"
+    resolved "https://registry.npmjs.org/webpack-merge/-/webpack-merge-4.2.2.tgz#a27c52ea783d1398afd2087f547d7b9d2f43634d"
+    integrity sha512-TUE1UGoTX2Cd42j3krGYqObZbOD+xF7u28WB7tfUordytSjbWTIjK/8V0amkBfTYN4/pB/GIDlJZZ657BGG19g==
+    dependencies:
+      lodash "^4.17.15"
   
   webpack-sources@^1.4.0, webpack-sources@^1.4.1:
     version "1.4.3"
