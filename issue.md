@@ -5,8 +5,6 @@
 - 获取 markdown 或者 html 的回调函数
 - 设置高度和宽度
 
-### webpack 配置路径别名
-
 
 ### eslint 配置
 

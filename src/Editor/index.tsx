@@ -2,6 +2,7 @@ import React from "react";
 import Toolbar from "@src/component/Toolbar/index";
 import Textarea from "@src/component/Textarea/index";
 import Preview from "@src/component/Preview/index";
+import InterfaceOperation from '@src/component/InterfaceOperation/index'
 import "./index.scss";
 import { MarkToHtml } from "@utils/index";
 
@@ -13,6 +14,7 @@ interface Props {
   onChange?: (value: string, html: string) => void;
 }
 
+
 interface State {
   value: string;
   selectContent: string;
@@ -22,6 +24,7 @@ interface State {
   historyValues: string[];
   historyIndex: number;
   isFullScreen: boolean;
+  interfaceStatus: number;
 }
 
 export default class Editor extends React.Component<Props, State> {
@@ -38,7 +41,8 @@ export default class Editor extends React.Component<Props, State> {
       scrollRatio: 0,
       historyValues: [props.defaultValue || ""],
       historyIndex: 0,
-      isFullScreen: props.isFullScreen || false
+      isFullScreen: props.isFullScreen || false,
+      interfaceStatus: 3
     };
   }
 
@@ -121,6 +125,14 @@ export default class Editor extends React.Component<Props, State> {
     window.localStorage.removeItem("REAT_MARKDOWN_VALUE");
   };
 
+  public changeInterfaceStatus = (interfaceStatus: number) => {
+    this.setState(() => {
+      return {
+        interfaceStatus
+      };
+    });
+  }
+
   public render() {
     const { width = 614, height = 300 } = this.props;
     const {
@@ -129,7 +141,8 @@ export default class Editor extends React.Component<Props, State> {
       scrollRatio,
       historyValues,
       historyIndex,
-      isFullScreen
+      isFullScreen,
+      interfaceStatus
     } = this.state;
     return (
       <div
@@ -153,7 +166,8 @@ export default class Editor extends React.Component<Props, State> {
             clearContent={this.clearContent}
           />
         </div>
-        <div className="main-container" style={{ height: height - 32 + "px" }}>
+        <div className={'main-container' + (interfaceStatus === 1 ? ' edit-mode' : interfaceStatus === 2 ? ' view-mode' : '')} style={{ height: height - 32 + "px" }}>
+          <InterfaceOperation interfaceStatus={interfaceStatus} changeInterfaceStatus={this.changeInterfaceStatus} />
           <div className="edit-container">
             <Textarea
               value={value}

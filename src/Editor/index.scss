@@ -23,12 +23,37 @@
     }
   }
   .main-container {
+    position:relative;
+    width: 100%;
+    display: flex;
+    &.edit-mode{
+      .view-container{
+        display:none;
+      }
+    }
+    &.view-mode{
+      .edit-container{
+        display:none;
+      }
+    }
+    .interface-operation{
+       position:absolute;
+       right: 20px;
+       .iconfont {
+        color: #999999;
+        font-size: 18px;
+        margin: 0 6px;
+        cursor: pointer;
+        &:hover {
+          color: #666;
+        }
+      }
+    }
     .edit-container,
     .view-container {
+      flex:1;
       box-sizing: border-box;
       height: 100%;
-      float: left;
-      width: 50%;
       font-size: 14px;
       font-family: monospace;
       line-height: 21px;
