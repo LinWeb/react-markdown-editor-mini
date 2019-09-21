@@ -1,4 +1,4 @@
-export default function(type: string, value: string, params?: any) {
+export default function (type: string, value: string, params?: any) {
   let newValue = "";
   switch (type) {
     case "H1":

@@ -1,5 +1,5 @@
 import React from "react";
-import { MarkToHtml } from "../../../utils/index";
+import { MarkToHtml } from "@utils/index";
 import "./index.scss";
 
 interface IProps {

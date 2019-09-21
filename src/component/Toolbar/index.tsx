@@ -6,7 +6,7 @@ import {
   TableEditOperation,
   UploadImgOperation
 } from "../editOperation/index";
-import { Edit } from "../../../utils/index";
+import { Edit } from "@utils/index";
 
 interface Props {
   changeSelectContent: (value: string) => void;

@@ -1,9 +1,9 @@
 import React from "react";
-import Toolbar from "../component/Toolbar/index";
-import Textarea from "../component/Textarea/index";
-import Preview from "../component/Preview/index";
+import Toolbar from "@src/component/Toolbar/index";
+import Textarea from "@src/component/Textarea/index";
+import Preview from "@src/component/Preview/index";
 import "./index.scss";
-import { MarkToHtml } from "../../utils/index";
+import { MarkToHtml } from "@utils/index";
 
 interface Props {
   width?: number;

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { MinImg, Ajax } from "../../../../utils/index";
+import { MinImg, Ajax } from "@utils/index";
 interface IProps {
   editHandle: (type: string) => void;
 }

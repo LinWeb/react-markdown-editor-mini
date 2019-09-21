@@ -10,7 +10,7 @@ module.exports = {
         config: {
           resolve: {
             alias: {
-              "@src": "./src"
+              "@src": "./src",
             },
             extensions: [".tsx", ".ts", ".js", ".jsx", ".json"]
           }
