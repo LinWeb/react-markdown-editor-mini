@@ -9,6 +9,9 @@ const prodConfig = {
     path: path.join(__dirname, "../", "lib"),
     filename: "index.js",
     libraryTarget: "umd"
+  },
+  externals: {
+    react: 'react',
   }
 };
 
