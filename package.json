@@ -11,6 +11,11 @@
     "start": "webpack-dev-server --hot --config config/webpack.dev.js",
     "build": "webpack --config config/webpack.prod.js"
   },
+  "keywords": [
+    "markdown",
+    "react",
+    "editor"
+  ],
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "7.3.1",
