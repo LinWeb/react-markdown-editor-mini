@@ -3,7 +3,7 @@ import Toolbar from "../component/Toolbar/index";
 import Textarea from "../component/Textarea/index";
 import Preview from "../component/Preview/index";
 import "./index.scss";
-import { Marked } from "../../utils/index";
+import { MarkToHtml } from "../../utils/index";
 
 interface Props {
   width?: number;
@@ -57,7 +57,7 @@ export default class Editor extends React.Component<Props, State> {
   ) => {
     const { value, historyValues } = this.state;
     if (value !== newValue || isInputChinese) {
-      !isHistory && this.props.onChange(newValue, Marked(newValue || "")); // 回调函数返回输入域的值和生成对应的html
+      !isHistory && this.props.onChange(newValue, MarkToHtml(newValue || "")); // 回调函数返回输入域的值和生成对应的html
       this.setState(() => {
         return {
           value: newValue,

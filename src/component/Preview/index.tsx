@@ -1,5 +1,5 @@
 import React from "react";
-import { Marked } from "../../../utils/index";
+import { MarkToHtml } from "../../../utils/index";
 import "./index.scss";
 
 interface IProps {
@@ -47,7 +47,7 @@ export default class Preview extends React.Component<IProps, {}> {
         className="preview"
         ref={this.$preview}
         onScroll={this.onScroll}
-        dangerouslySetInnerHTML={{ __html: Marked(content || "") }}
+        dangerouslySetInnerHTML={{ __html: MarkToHtml(content || "") }}
       ></div>
     );
   }

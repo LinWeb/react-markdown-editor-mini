@@ -1,12 +1,14 @@
-import marked from "marked";
-import hljs from "highlight.js";
-import javascript from "highlight.js/lib/languages/javascript";
+/// <Reference path="../@types/markToHtml.d.ts"/>
+import MarkToHtml from 'marked'
+import hljs from 'highlight.js/lib/highlight'
+import javascript from 'highlight.js/lib/languages/javascript'
 import "highlight.js/styles/atom-one-light.css";
+
+
 hljs.registerLanguage("javascript", javascript); // javascript语法高亮
 
-// markdown转换器
-marked.setOptions({
-  renderer: new marked.Renderer(),
+MarkToHtml.setOptions({
+  renderer: new MarkToHtml.Renderer(),
   gfm: true,
   tables: true,
   breaks: false,
@@ -19,4 +21,4 @@ marked.setOptions({
   }
 });
 
-export default marked;
+export default MarkToHtml;
