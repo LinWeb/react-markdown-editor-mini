@@ -66,6 +66,9 @@ export default function (type: string, value: string, params?: any) {
         }
       }
       break;
+    case "upload_img":
+      newValue = `${params.tip ? ' \n\n' + params.tip : ''}![](${params.url})`
+      break;
     default:
   }
   return newValue;

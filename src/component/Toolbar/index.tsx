@@ -51,7 +51,7 @@ export default class Toolbar extends React.Component<Props> {
         <ComponentEditOperation editHandle={this.editHandle} />
 
         <TableEditOperation editHandle={this.editHandle} />
-        {/* <UploadImgOperation editHandle={this.editHandle} /> */}
+        <UploadImgOperation editHandle={this.editHandle} />
         <span
           className={(canRevoke ? "" : "disable ") + "iconfont iconchexiao"}
           title="撤销"

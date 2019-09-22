@@ -2,7 +2,6 @@
 import MarkToHtml from 'marked'
 import hljs from 'highlight.js/lib/highlight'
 import javascript from 'highlight.js/lib/languages/javascript'
-import "highlight.js/styles/atom-one-light.css";
 
 
 hljs.registerLanguage("javascript", javascript); // javascript语法高亮

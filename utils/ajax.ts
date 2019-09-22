@@ -19,7 +19,7 @@ const defaultConfig: IConfig = {
   }
 };
 
-export default function(params: IParams) {
+export default function (params: IParams) {
   let config = {
     ...defaultConfig,
     ...params,
@@ -45,8 +45,11 @@ export default function(params: IParams) {
       case 200:
         success(xhr.response);
         break;
+      case 404:
+        error('请检查接口')
+        break;
       default:
-        error(xhr.response);
+        error('请求错误');
     }
   };
   for (let key in headers) {

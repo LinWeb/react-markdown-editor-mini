@@ -1,7 +1,5 @@
-export default (files: any, callback: (formData: FormData) => void) => {
-  for (let i = 0; i < files.length; i++) {
-    // files是一个数组，针对一次上传多张图片的情况
-    let file = files[i];
+export default (file: any) => {
+  return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file); // 异步以base64的形式读取图片内容
     reader.onload = async e => {
@@ -25,13 +23,12 @@ export default (files: any, callback: (formData: FormData) => void) => {
         ctx.fillStyle = "#fff"; // 用白色填充画布
         ctx.fillRect(0, 0, w, h); // 在画布上绘制指定宽度和高度的矩形
         ctx.drawImage(img, 0, 0, w, h); // 在画布上绘制图片
-
         canvas.toBlob(
           blob => {
             // 画布生成一个blob对象
             let formData = new FormData(); // 创建表单数据对象
-            formData.append("file", blob, name); // 添加数据
-            callback(formData);
+            formData.append("file", blob, file.name); // 添加数据
+            resolve(formData);
             // 最后用post方式发送请求，注意请求请求头部加上'Content-Type': 'multipart/form-data'
           },
           "image/jpeg",
@@ -39,5 +36,5 @@ export default (files: any, callback: (formData: FormData) => void) => {
         ); //'image/jpeg'是图片格式，0.7是压缩率
       };
     };
-  }
+  })
 };

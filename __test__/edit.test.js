@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
-import { edit } from "../utils/edit";
-
+import { Edit } from "../utils/index";
 const value = "我的梦想是不上班";
 
 // afterEach(() => {
@@ -16,47 +15,50 @@ const value = "我的梦想是不上班";
 //   console.log(2222222);
 // });
 
-describe("edit options", () => {
+describe("Edit options", () => {
   test("title", () => {
-    expect(edit("H1", value)).toBe(`\n# ${value}\n`);
-    expect(edit("H2", value)).toBe(`\n## ${value}\n`);
-    expect(edit("H3", value)).toBe(`\n### ${value}\n`);
-    expect(edit("H4", value)).toBe(`\n#### ${value}\n`);
-    expect(edit("H5", value)).toBe(`\n##### ${value}\n`);
-    expect(edit("H6", value)).toBe(`\n###### ${value}\n`);
+    expect(Edit("H1", value)).toBe(`\n# ${value}\n`);
+    expect(Edit("H2", value)).toBe(`\n## ${value}\n`);
+    expect(Edit("H3", value)).toBe(`\n### ${value}\n`);
+    expect(Edit("H4", value)).toBe(`\n#### ${value}\n`);
+    expect(Edit("H5", value)).toBe(`\n##### ${value}\n`);
+    expect(Edit("H6", value)).toBe(`\n###### ${value}\n`);
   });
   test("bold", () => {
-    expect(edit("bold", value)).toBe(`**${value}**`);
+    expect(Edit("bold", value)).toBe(`**${value}**`);
   });
   test("ltalics", () => {
-    expect(edit("ltalics", value)).toBe(`*${value}*`);
+    expect(Edit("ltalics", value)).toBe(`*${value}*`);
   });
   test("underline", () => {
-    expect(edit("underline", value)).toBe(`++${value}++`);
+    expect(Edit("underline", value)).toBe(`++${value}++`);
   });
   test("strikethrough", () => {
-    expect(edit("strikethrough", value)).toBe(`~~${value}~~`);
+    expect(Edit("strikethrough", value)).toBe(`~~${value}~~`);
   });
   test("unorder", () => {
-    expect(edit("unorder", value)).toBe(`\n- ${value}\n`);
+    expect(Edit("unorder", value)).toBe(`\n- ${value}\n`);
   });
   test("order", () => {
-    expect(edit("order", value)).toBe(`\n1. ${value}\n`);
+    expect(Edit("order", value)).toBe(`\n1. ${value}\n`);
   });
   test("quote", () => {
-    expect(edit("quote", value)).toBe(`\n> ${value}\n`);
+    expect(Edit("quote", value)).toBe(`\n> ${value}\n`);
   });
   test("splitLine", () => {
-    expect(edit("splitLine", value)).toBe(`\n\n---\n\n`);
+    expect(Edit("splitLine", value)).toBe(`\n\n---\n\n`);
   });
   test("link", () => {
-    expect(edit("link", value)).toBe(`[${value}]()`);
+    expect(Edit("link", value)).toBe(`[${value}]()`);
   });
   test("code", () => {
-    expect(edit("code", value)).toBe(`\n\`\`\`javascript\n\n\`\`\`\n`);
+    expect(Edit("code", value)).toBe(`\n\`\`\`javascript\n\n\`\`\`\n`);
   });
-  test("table", () => {
-    expect(edit("table", value)).toBe(`table`);
+  // test("table", () => {
+  //   expect(Edit("table", value, { x: 2, y: 3 })).toBe(`| Head | Head | Head |\n| --- | --- | --- |\n| Data | Data | Data |\n| Data | Data | Data |`);
+  // });
+  test("upload_img", () => {
+    const url = 'https://avatars0.githubusercontent.com/u/21263805'
+    expect(Edit("upload_img", value, { url })).toBe(`![](${url})`);
   });
-
 });

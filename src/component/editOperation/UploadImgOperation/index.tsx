@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { MinImg, Ajax } from "@utils/index";
 interface IProps {
-  editHandle: (type: string) => void;
+  editHandle: (type: string, params?: any) => void;
 }
 
 export default class UploadImgOperation extends React.Component<IProps, {}> {
@@ -9,28 +9,34 @@ export default class UploadImgOperation extends React.Component<IProps, {}> {
     super(props);
   }
 
-  public onChange = (e: any) => {
+  public onChange = async (e: any) => {
     let $file = e.target; // 获取上传标签节点
-    MinImg($file.files, data => {
-      Ajax({
-        url: "/upload",
-        method: "POST",
-        data: {
-          name: "lxs",
-          age: 90
-        },
-        headers: {
-          "Content-Type": "multipart/form-data"
-        },
-        error: (xhr: any) => {
-          console.log(xhr);
-        }
-      });
-    });
+    for (let i = 0; i < $file.files.length; i++) {
+      let file = await MinImg($file.files[i])
+      await this.upload(file)
+    }
   };
 
-  public render() {
+  public async upload(file: any) {
     let { editHandle } = this.props;
+    Ajax({
+      url: "/upload",
+      method: "POST",
+      data: file,
+      headers: {
+        "Content-Type": "multipart/form-data; charset=UTF-8"
+      },
+      error: (err: any) => {
+        editHandle('upload_img', { url: 'https://avatars0.githubusercontent.com/u/21263805', tip: '注：示例图片，仅展示' })
+        throw Error(err)
+      },
+      success: (data: any) => {
+        editHandle('upload_img', { url: data })
+      }
+    });
+  }
+
+  public render() {
     return (
       <Fragment>
         <label
