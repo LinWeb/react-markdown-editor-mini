@@ -135,7 +135,7 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   public render() {
-    const { width = 614, height = 300, uploadImgUrl } = this.props;
+    const { width = 652, height = 300, uploadImgUrl } = this.props;
     const {
       value,
       selectContent,

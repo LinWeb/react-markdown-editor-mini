@@ -1,6 +1,6 @@
 export default {
-  width: 733,
-  height: 434,
+  // width: 733,
+  // height: 434,
   isFullScreen: false,
   onChange: (value, html) => {
     // console.log(value, html);
