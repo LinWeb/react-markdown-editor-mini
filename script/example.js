@@ -5,6 +5,7 @@ export default {
   onChange: (value, html) => {
     // console.log(value, html);
   },
+  uploadImgUrl: '/upload',    // 返回的数据格式{data:'图片url'}
   defaultValue: `
   # h1 Heading
   ## h2 Heading

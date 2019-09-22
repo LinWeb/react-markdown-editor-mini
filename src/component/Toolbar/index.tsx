@@ -19,6 +19,7 @@ interface Props {
   historyIndex: number;
   saveContent: () => void;
   clearContent: () => void;
+  uploadImgUrl?: string;
 }
 
 export default class Toolbar extends React.Component<Props> {
@@ -40,7 +41,8 @@ export default class Toolbar extends React.Component<Props> {
       historyIndex,
       isFullScreen,
       saveContent,
-      clearContent
+      clearContent,
+      uploadImgUrl
     } = this.props;
     const canRevoke = historyIndex !== historyLength - 1;
     const canRedo = historyIndex !== 0;
@@ -51,7 +53,7 @@ export default class Toolbar extends React.Component<Props> {
         <ComponentEditOperation editHandle={this.editHandle} />
 
         <TableEditOperation editHandle={this.editHandle} />
-        <UploadImgOperation editHandle={this.editHandle} />
+        <UploadImgOperation editHandle={this.editHandle} uploadImgUrl={uploadImgUrl} />
         <span
           className={(canRevoke ? "" : "disable ") + "iconfont iconchexiao"}
           title="撤销"

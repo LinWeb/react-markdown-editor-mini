@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { MinImg, Ajax } from "@utils/index";
 interface IProps {
   editHandle: (type: string, params?: any) => void;
+  uploadImgUrl: string;
 }
 
 export default class UploadImgOperation extends React.Component<IProps, {}> {
@@ -18,9 +19,9 @@ export default class UploadImgOperation extends React.Component<IProps, {}> {
   };
 
   public async upload(file: any) {
-    let { editHandle } = this.props;
+    let { editHandle, uploadImgUrl } = this.props;
     Ajax({
-      url: "/upload",
+      url: uploadImgUrl,
       method: "POST",
       data: file,
       headers: {

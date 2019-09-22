@@ -11,6 +11,7 @@ interface Props {
   height?: number;
   defaultValue?: string;
   isFullScreen?: boolean;
+  uploadImgUrl?: string;
   onChange?: (value: string, html: string) => void;
 }
 
@@ -134,7 +135,7 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   public render() {
-    const { width = 614, height = 300 } = this.props;
+    const { width = 614, height = 300, uploadImgUrl } = this.props;
     const {
       value,
       selectContent,
@@ -164,6 +165,7 @@ export default class Editor extends React.Component<Props, State> {
             historyIndex={historyIndex}
             saveContent={this.saveContent}
             clearContent={this.clearContent}
+            uploadImgUrl={uploadImgUrl}
           />
         </div>
         <div className={'main-container' + (interfaceStatus === 1 ? ' edit-mode' : interfaceStatus === 2 ? ' view-mode' : '')} style={{ height: height - 32 + "px" }}>
